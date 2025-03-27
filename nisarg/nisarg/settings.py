@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
-import decouple
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -49,7 +48,7 @@ EMAIL_PORT = 587                  # Port number     #do not change
 EMAIL_USE_TLS = True                    # Use TLS for secure connection
 EMAIL_HOST_USER = 'nisargparsaniya@gmail.com'  # Your Gmail address # change as per your gmail
 # EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-EMAIL_HOST_PASSWORD = ('xfvn bflp uwpz ofrv')  # Use Gmail App Password # change as per your gmail
+EMAIL_HOST_PASSWORD = ('xfvn bflp uwpz ofrv') 
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
