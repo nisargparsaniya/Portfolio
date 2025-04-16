@@ -904,9 +904,11 @@
             </div>
             <div class="about-content">
                 <div class="about-text">
-                    <p>Hello! I’m Nisarg Parsaniya, a passionate and driven fresher eager to embark on my journey in the IT industry. With a strong foundation in computer science and a keen interest in Web Development.
-                    </p>
-                    <p> I am excited to contribute my skills and creativity to innovative projects.</p>
+                    {% if about %}
+                    <p style="color: green;">{{ about.description|linebreaks }}</p>
+                    {% else %}
+                    <p style="color: red;">No about content found.</p>
+                    {% endif %}
                     <div class="personal-info">
                         <div class="info-item">
                             <span class="info-title">Name:</span>

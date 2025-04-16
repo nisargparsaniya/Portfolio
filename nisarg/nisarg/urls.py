@@ -19,6 +19,5 @@ from django.urls import path, include
 from acc import views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.smtp, name='smtp'),
-    # path('', include('contact.urls')), 
+    path('', include('acc.urls')),  # This connects your app's URLs
 ]

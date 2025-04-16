@@ -1,9 +1,19 @@
 from django.core.mail import send_mail   # here we import send_mail function which is used to send mail 
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import SiteContent
+
+
+
+def homepage(request):
+    about = SiteContent.objects.filter(name="About Section").first()
+    # print("About data from DB:", about.description if about else "None")
+    return render(request, 'nisarg.html', {'about': about})
+
 
 def smtp(request):
-    if request.method == 'POST':    # here we check if the request method is POST or not
+
+    if request.method == 'POST':    
 
         # alert_message = "Form submitted successfully!"
 
@@ -13,7 +23,7 @@ def smtp(request):
         mail = request.POST.get('mail')
         msg = request.POST.get('msg')
 
-        # user/developer name
+        # admin/user/developer name
         user = "Nisarg Parsaniya"
 
         # Email content
@@ -41,7 +51,8 @@ def smtp(request):
 
         # after sending the mail we return a message to the user
         # we can also redirect to another page NOTE : we can change return page as per our need
-        # return HttpResponse("Thank you,for contact us, Your message has been sent.(we will contact you soon)")
+        return HttpResponse("Thank you,for contact us, Your message has been sent.(we will contact you soon)")
                 # return render(request,'HOME.html')
     return render(request, 'nisarg.html') 
     # return render(request, 'nisarg.html', {'alert_message': alert_message}) 
+
