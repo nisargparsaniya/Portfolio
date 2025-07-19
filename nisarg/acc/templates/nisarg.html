@@ -10,8 +10,8 @@
     <style>/* ===== Variables ===== */
         :root {
             /* Light Theme Colors */
-            --primary-color: #4e54c8;
-            --secondary-color: #8f94fb;
+            --primary-color: #00008B;
+            --secondary-color: #1E90FF;
             --text-color: #333;
             --bg-color: #f9f9f9;
             --card-bg: #ffffff;
@@ -28,22 +28,22 @@
         }
         
         .dark-theme {
-            /* Dark Theme Colors */
-            --primary-color: #6c63ff;
-            --secondary-color: #8f94fb;
-            --text-color: #f0f0f0;
-            --bg-color: #121212;
-            --card-bg: #1e1e1e;
-            --border-color: #2d2d2d;
-            --highlight-color: #6c63ff;
-            --section-bg: #1a1a1a;
-            --timeline-line: #2d2d2d;
-            --progress-bg: #2d2d2d;
-            --progress-bar: #6c63ff;
-            --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            --header-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            --input-bg: #2d2d2d;
-            --btn-hover: #6c63ff;
+            /* High Contrast Dark Theme Colors */
+            --primary-color: #00008B;
+            --secondary-color: #1E90FF;
+            --text-color: #ffffff;
+            --bg-color: #000000;
+            --card-bg: #121212;
+            --border-color: #444444;
+            --highlight-color: #b388ff;
+            --section-bg: #0a0a0a;
+            --timeline-line: #555555;
+            --progress-bg: #444444;
+            --progress-bar: #7c4dff;
+            --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+            --header-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+            --input-bg: #1a1a1a;
+            --btn-hover: #b388ff;
         }
         
         /* ===== Reset & Base ===== */
@@ -51,7 +51,16 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            transition: background-color 0.3s, color 0.3s;
+            transition: background-color 0.3s, color 0.3s, transform 0.3s, opacity 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        body {
+            animation: fadeIn 0.8s ease-out;
         }
         
         html {
@@ -93,6 +102,31 @@
             font-size: 2.5rem;
             margin-bottom: 10px;
             color: var(--primary-color);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .underline {
+            animation: scaleIn 0.8s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scaleX(0);
+            }
+            to {
+                transform: scaleX(1);
+            }
         }
         
         .underline {
@@ -129,8 +163,8 @@
         
         .primary-btn:hover {
             background: var(--btn-hover);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
         }
         
         .secondary-btn {
@@ -270,6 +304,45 @@
             font-size: 3.5rem;
             margin-bottom: 10px;
             line-height: 1.2;
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .hero-content h2 {
+            animation: slideInLeft 0.8s ease-out 0.2s both;
+        }
+
+        .hero-content p {
+            animation: slideInLeft 0.8s ease-out 0.4s both;
+        }
+
+        .hero-btns {
+            animation: slideInLeft 0.8s ease-out 0.6s both;
+        }
+
+        .profile-img-container {
+            animation: fadeInRight 0.8s ease-out 0.4s both;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                transform: translateX(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
         
         .hero-content h2 {
@@ -293,6 +366,75 @@
             display: flex;
             justify-content: center;
             align-items: center;
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-down-btn {
+            display: block;
+            width: 30px;
+            height: 50px;
+            position: relative;
+        }
+
+        .scroll-down-btn span {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            margin-left: -10px;
+            border-left: 2px solid var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            transform: rotate(-45deg);
+            animation: scrollDown 1.5s infinite;
+            opacity: 0;
+        }
+
+        .scroll-down-btn span:nth-of-type(1) {
+            animation-delay: 0s;
+        }
+
+        .scroll-down-btn span:nth-of-type(2) {
+            top: 10px;
+            animation-delay: 0.2s;
+        }
+
+        .scroll-down-btn span:nth-of-type(3) {
+            top: 20px;
+            animation-delay: 0.4s;
+        }
+
+        @keyframes scrollDown {
+            0% {
+                opacity: 0;
+                transform: rotate(-45deg) translate(0, 0);
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: rotate(-45deg) translate(-10px, 10px);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
         }
         
         .profile-img-container {
@@ -390,8 +532,20 @@
             transition: transform 0.3s ease;
         }
         
+        .skill-item {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        .skill-item:nth-child(1) { animation-delay: 0.2s; }
+        .skill-item:nth-child(2) { animation-delay: 0.4s; }
+        .skill-item:nth-child(3) { animation-delay: 0.6s; }
+        .skill-item:nth-child(4) { animation-delay: 0.8s; }
+
         .skill-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
         
         .skill-icon {
@@ -465,8 +619,18 @@
             transition: transform 0.3s ease;
         }
         
+        .project-card {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .project-card:nth-child(1) { animation-delay: 0.2s; }
+        .project-card:nth-child(2) { animation-delay: 0.4s; }
+
         .project-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
         
         .project-img {
@@ -584,7 +748,13 @@
             border-radius: 10px;
             box-shadow: var(--card-shadow);
             width: 100%;
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: fadeInRight 0.6s ease-out forwards;
         }
+
+        .timeline-item:nth-child(1) .timeline-content { animation-delay: 0.2s; }
+        .timeline-item:nth-child(2) .timeline-content { animation-delay: 0.4s; }
         
         .timeline-content h3 {
             font-size: 1.3rem;
@@ -665,6 +835,11 @@
             transition: all 0.3s ease;
             box-shadow: var(--card-shadow);
         }
+        .social-link:hover {
+            background-color: #0077B5;
+            color: white;
+            transform: translateY(-5px);
+        }
         
         .social-link:hover {
             background-color: var(--primary-color);
@@ -677,6 +852,20 @@
             padding: 30px;
             border-radius: 10px;
             box-shadow: var(--card-shadow);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out 0.4s forwards;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
         .form-group {
@@ -762,8 +951,26 @@
         }
         
         @media (max-width: 768px) {
-            nav ul {
-                display: none;
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--card-bg);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: left 0.5s ease;
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 20px 0;
             }
         
             .hero-content h1 {
@@ -856,7 +1063,7 @@
                 <h1>Nisarg</h1>
             </div>
             <nav>
-                <ul>
+                <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#skills">Skills</a></li>
@@ -891,6 +1098,13 @@
                         <img src="https://res.cloudinary.com/dxtx1kkwy/image/upload/v1743142746/cjrn9gnieyucufxk9k6z.png">
                     </div>
                 </div>
+            </div>
+            <div class="scroll-down">
+                <a href="#about" class="scroll-down-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
             </div>
         </div>
     </section>
@@ -1147,8 +1361,8 @@
                     </div>
                     <div class="social-links">
                         <a href="https://github.com/nisargparsaniya" class="social-link"><i class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/nisarg-parsaniya-02a23a359?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app " class="social-link"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://www.instagram.com/nisarg_parsaniya?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/nisarg-parsaniya-02a23a359?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app " class="social-link" style="color: #0077B5;"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.instagram.com/nisarg_parsaniya?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="social-link" style="background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); color: white;"><i class="fab fa-instagram"></i></a>
                         <a href="https://nisargparsaniya.onrender.com" class="social-link"><i class="fab fa-google"></i></a>
 
                     </div>
